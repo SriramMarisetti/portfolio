@@ -1,0 +1,79 @@
+@import 'variables';
+
+// ============================================
+// LOADER SCREEN
+// ============================================
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  background: $color-bg-primary;
+  z-index: 10000;
+  @include flex-center;
+  flex-direction: column;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 142, 247, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  position: relative;
+  z-index: 1;
+}
+
+.loader-logo {
+  font-family: $font-mono;
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  letter-spacing: -1px;
+
+  .loader-bracket {
+    @include gradient-text;
+  }
+
+  .loader-name {
+    color: $color-text-primary;
+  }
+}
+
+.loader-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(79, 142, 247, 0.15);
+  border-radius: $border-radius-full;
+  overflow: hidden;
+}
+
+.loader-progress {
+  height: 100%;
+  background: linear-gradient(90deg, $color-blue-primary, $color-cyan);
+  border-radius: $border-radius-full;
+  animation: loadProgress 1.5s ease forwards;
+}
+
+.loader-text {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  letter-spacing: 1px;
+}
+
+@keyframes loadProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}

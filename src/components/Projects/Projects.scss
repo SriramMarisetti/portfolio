@@ -1,0 +1,233 @@
+@import '../../styles/variables';
+
+
+
+.projects {
+  @include section-padding;
+  position: relative;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 22, 39, 0.3) 50%, transparent 100%);
+
+  &__bg-deco {
+    position: absolute;
+    right: -150px;
+    bottom: 100px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(79, 142, 247, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: $spacing-8;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__note {
+    text-align: center;
+    margin-top: $spacing-10;
+    padding: $spacing-6;
+    @include glass;
+    border-radius: $border-radius-lg;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+
+    a {
+      color: $color-blue-primary;
+      font-weight: 600;
+      transition: color $transition-base;
+
+      &:hover {
+        color: $color-cyan;
+      }
+    }
+  }
+}
+
+// Project Card
+.project-card {
+  position: relative;
+  @include glass;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  transition: all $transition-base;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: rgba(79, 142, 247, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(79, 142, 247, 0.12);
+  }
+
+  &__accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--project-color), $color-cyan);
+  }
+
+  &__visual {
+    padding: $spacing-5 $spacing-5 0;
+    background: rgba(5, 11, 24, 0.5);
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__content {
+    padding: $spacing-6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    flex: 1;
+  }
+
+  &__header {
+    @include flex-between;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    background: rgba(79, 142, 247, 0.06);
+    border: 1px solid $color-border;
+    border-radius: $border-radius-md;
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-2;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-text-primary;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-2;
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      line-height: 1.5;
+
+      svg {
+        color: var(--project-color, #{$color-blue-primary});
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-3;
+    padding-top: $spacing-2;
+    border-top: 1px solid $color-border;
+  }
+}
+
+.project-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $border-radius-sm;
+  color: $color-text-muted;
+  background: transparent;
+  border: 1px solid $color-border;
+  transition: all $transition-base;
+
+  &:hover {
+    color: $color-blue-primary;
+    border-color: $color-blue-primary;
+    background: rgba(79, 142, 247, 0.08);
+  }
+}
+
+// Browser Mockup
+.project-card__mockup {
+  border-radius: $border-radius-md $border-radius-md 0 0;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  border-bottom: none;
+  min-height: 140px;
+  background: $color-bg-card;
+}
+
+.mockup__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid $color-border;
+
+  span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &:nth-child(1) { background: #ef4444; }
+    &:nth-child(2) { background: #f59e0b; }
+    &:nth-child(3) { background: #10b981; }
+  }
+}
+
+.mockup__screen {
+  padding: $spacing-4;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.mockup__line {
+  height: 8px;
+  border-radius: $border-radius-full;
+  background: rgba(79, 142, 247, 0.1);
+
+  &--wide { width: 70%; }
+  &--medium { width: 50%; }
+  &--short { width: 30%; }
+}
+
+.mockup__content-row {
+  display: flex;
+  gap: $spacing-3;
+  margin-top: $spacing-2;
+}
+
+.mockup__block {
+  flex: 1;
+  height: 48px;
+  border-radius: $border-radius-sm;
+  background: rgba(79, 142, 247, 0.07);
+}
+

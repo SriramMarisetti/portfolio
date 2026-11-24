@@ -1,0 +1,214 @@
+@import '../../styles/variables';
+
+
+
+.footer {
+  position: relative;
+  padding: $spacing-16 0 $spacing-8;
+  background: $color-bg-secondary;
+  border-top: 1px solid $color-border;
+
+  &__top-glow {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $color-blue-primary, $color-cyan, transparent);
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: $spacing-12;
+    margin-bottom: $spacing-10;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-8;
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+      gap: $spacing-8;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__logo {
+    display: inline-flex;
+    gap: 4px;
+    font-family: $font-mono;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-text-primary;
+    text-decoration: none;
+    transition: color $transition-base;
+
+    .logo-bracket {
+      @include gradient-text;
+    }
+
+    &:hover {
+      color: $color-blue-primary;
+    }
+  }
+
+  &__tagline {
+    font-size: $font-size-sm;
+    color: $color-blue-primary;
+    font-weight: 500;
+  }
+
+  &__bio {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+
+  &__socials {
+    display: flex;
+    gap: $spacing-3;
+    margin-top: $spacing-2;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+  }
+
+  &__nav-title {
+    font-size: $font-size-xs;
+    font-weight: 700;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    text-decoration: none;
+    transition: all $transition-base;
+
+    .nav-arrow {
+      font-size: $font-size-xs;
+      color: $color-blue-primary;
+      transition: transform $transition-base;
+    }
+
+    &:hover {
+      color: $color-blue-primary;
+
+      .nav-arrow {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+  }
+
+  &__contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__contact-link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    text-decoration: none;
+    transition: all $transition-base;
+    padding: $spacing-2 $spacing-3;
+    border-radius: $border-radius-sm;
+    margin: 0 (-$spacing-3);
+
+    svg {
+      flex-shrink: 0;
+      color: $color-blue-primary;
+    }
+
+    &:hover {
+      color: $color-blue-primary;
+      background: rgba(79, 142, 247, 0.06);
+    }
+  }
+
+  &__bottom {
+    @include flex-between;
+    padding-top: $spacing-6;
+    border-top: 1px solid $color-border;
+    flex-wrap: wrap;
+    gap: $spacing-3;
+
+    @media (max-width: $bp-sm) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__copy {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-family: $font-mono;
+  }
+
+  &__made {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+
+    .heart-icon {
+      color: #ef4444;
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+  }
+}
+
+.footer-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-blue-primary;
+    color: $color-blue-primary;
+    background: rgba(79, 142, 247, 0.08);
+    box-shadow: $shadow-glow-sm;
+  }
+}
+

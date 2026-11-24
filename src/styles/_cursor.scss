@@ -1,0 +1,43 @@
+@import 'variables';
+
+// ============================================
+// CUSTOM CURSOR
+// ============================================
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $color-blue-primary;
+  pointer-events: none;
+  z-index: $z-cursor;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 10px rgba(79, 142, 247, 0.6);
+
+  &.hovering {
+    width: 12px;
+    height: 12px;
+    background: $color-cyan;
+    box-shadow: 0 0 16px rgba(6, 182, 212, 0.8);
+  }
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.5);
+  pointer-events: none;
+  z-index: $z-cursor;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s $transition-spring, height 0.3s $transition-spring, border-color 0.2s ease, background 0.2s ease;
+
+  &.hovering {
+    width: 50px;
+    height: 50px;
+    border-color: rgba(6, 182, 212, 0.4);
+    background: rgba(6, 182, 212, 0.05);
+  }
+}

@@ -1,0 +1,467 @@
+@import '../../styles/variables';
+
+
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 90px;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  &__bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+
+    &--1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(79, 142, 247, 0.12) 0%, transparent 70%);
+      top: -200px;
+      right: -100px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      animation: floatReverse 10s ease-in-out infinite;
+    }
+
+    &--3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.07) 0%, transparent 70%);
+      top: 40%;
+      left: 35%;
+      animation: float 12s ease-in-out infinite 2s;
+    }
+  }
+
+  &__grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79, 142, 247, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79, 142, 247, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-12;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-10;
+      text-align: center;
+      min-height: auto;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-2 $spacing-4;
+    border-radius: $border-radius-full;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    font-size: $font-size-sm;
+    color: $color-green;
+    font-weight: 500;
+    width: fit-content;
+
+    @media (max-width: $bp-lg) {
+      margin: 0 auto;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $color-green;
+      animation: glowPulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+  }
+
+  &__greeting {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    font-weight: 400;
+
+    .greeting-wave {
+      display: inline-block;
+      animation: wave 2s ease-in-out infinite;
+    }
+  }
+
+  &__heading {
+    font-size: clamp($font-size-4xl, 5vw, $font-size-7xl);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: $color-text-primary;
+    font-family: $font-primary;
+  }
+
+  &__name {
+    display: inline-block;
+    position: relative;
+    @include gradient-text;
+
+    &-underline {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $color-blue-primary, $color-cyan);
+      border-radius: $border-radius-full;
+      transform-origin: left;
+    }
+  }
+
+  &__role {
+    font-family: $font-mono;
+    font-size: clamp($font-size-lg, 2.5vw, $font-size-2xl);
+    color: $color-text-secondary;
+    font-weight: 400;
+
+    .role-prefix {
+      color: $color-blue-primary;
+      font-weight: 600;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    line-height: 1.8;
+    max-width: 540px;
+
+    @media (max-width: $bp-lg) {
+      margin: 0 auto;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-4;
+    flex-wrap: wrap;
+
+    @media (max-width: $bp-lg) {
+      justify-content: center;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    flex-wrap: wrap;
+
+    @media (max-width: $bp-lg) {
+      justify-content: center;
+    }
+
+    .social-divider {
+      width: 40px;
+      height: 1px;
+      background: $color-border-hover;
+    }
+
+    .social-label {
+      font-size: $font-size-xs;
+      color: $color-text-muted;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__visual {
+    position: relative;
+    @include flex-center;
+
+    @media (max-width: $bp-lg) {
+      order: -1;
+    }
+  }
+
+  &__scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-2;
+    background: none;
+    color: $color-text-muted;
+    font-size: $font-size-xs;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: $spacing-8 auto 0;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-blue-primary;
+    }
+
+    .scroll-text {
+      font-family: $font-mono;
+    }
+
+    .scroll-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      @include flex-center;
+    }
+  }
+}
+
+// Typewriter
+.typewriter {
+  color: $color-blue-primary;
+
+  .cursor-blink {
+    animation: blink 1s infinite;
+    color: $color-cyan;
+    margin-left: 1px;
+  }
+}
+
+// Social link
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  color: $color-text-secondary;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-blue-primary;
+    color: $color-blue-primary;
+    background: rgba(79, 142, 247, 0.08);
+    box-shadow: $shadow-glow-sm;
+  }
+}
+
+// Developer illustration
+.dev-illustration {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  @include flex-center;
+
+  @media (max-width: $bp-xl) {
+    width: 360px;
+    height: 360px;
+  }
+
+  @media (max-width: $bp-md) {
+    width: 280px;
+    height: 280px;
+  }
+
+  &__ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+
+    &--outer {
+      inset: 0;
+      border-width: 1px;
+      border-color: rgba(79, 142, 247, 0.12);
+      animation: rotateSlow 20s linear infinite;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: $color-blue-primary;
+        border-radius: 50%;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px $color-blue-primary;
+      }
+    }
+
+    &--inner {
+      inset: 30px;
+      border-width: 1px;
+      border-color: rgba(6, 182, 212, 0.1);
+      animation: rotateSlow 15s linear infinite reverse;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: $color-cyan;
+        border-radius: 50%;
+        bottom: -3.5px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 8px $color-cyan;
+      }
+    }
+  }
+
+  &__core {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    @include glass;
+    border-radius: $border-radius-xl;
+    @include flex-center;
+    flex-direction: column;
+    animation: float 5s ease-in-out infinite;
+    border-color: rgba(79, 142, 247, 0.2);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(79, 142, 247, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    @media (max-width: $bp-md) {
+      width: 170px;
+      height: 170px;
+    }
+  }
+}
+
+.dev-svg {
+  width: 160px;
+  height: 160px;
+
+  @media (max-width: $bp-md) {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.dev-code-symbol {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  margin-top: $spacing-2;
+
+  .sym-var {
+    color: $color-blue-primary;
+  }
+}
+
+// Orbit
+.orbit-wrapper {
+  position: absolute;
+  inset: 0;
+  animation: rotateSlow 12s linear infinite;
+
+  @media (max-width: $bp-md) {
+    display: none;
+  }
+}
+
+.orbit-item {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  @include flex-center;
+  @include glass;
+  border-radius: $border-radius-sm;
+  font-size: 16px;
+  animation: rotateSlow 12s linear infinite reverse;
+  box-shadow: $shadow-sm;
+  
+  // Position at different spots
+  &:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); }
+  &:nth-child(2) { top: 50%; right: 0; transform: translate(50%, -50%); }
+  &:nth-child(3) { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+  &:nth-child(4) { top: 50%; left: 0; transform: translate(-50%, -50%); }
+}
+
+// Tech floating badge
+.tech-float-badge {
+  position: absolute;
+  padding: $spacing-2 $spacing-3;
+  border-radius: $border-radius-md;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  font-family: $font-mono;
+  background: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1px solid var(--badge-color);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  &:nth-child(1) { top: 10%; left: -5%; animation: float 4s ease-in-out infinite; }
+  &:nth-child(2) { top: 15%; right: -5%; animation: floatReverse 5s ease-in-out infinite; }
+  &:nth-child(3) { bottom: 20%; left: -5%; animation: float 6s ease-in-out infinite 1s; }
+  &:nth-child(4) { bottom: 15%; right: -5%; animation: floatReverse 4.5s ease-in-out infinite 0.5s; }
+
+  @media (max-width: $bp-lg) {
+    &:nth-child(1) { top: -10%; left: 5%; }
+    &:nth-child(2) { top: -10%; right: 5%; }
+    &:nth-child(3) { bottom: -5%; left: 5%; }
+    &:nth-child(4) { bottom: -5%; right: 5%; }
+  }
+}
+
+// Particle field
+.particle-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: $color-blue-primary;
+  opacity: 0;
+  animation: particleDrift linear infinite;
+}
+
+// Wave animation
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  75% { transform: rotate(-10deg); }
+}
+

@@ -1,0 +1,229 @@
+@import '../../styles/variables';
+
+
+
+.about {
+  @include section-padding;
+  position: relative;
+
+  &__bg-decoration {
+    position: absolute;
+    left: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(79, 142, 247, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-12;
+    align-items: start;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-10;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-8;
+  }
+
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__text {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    line-height: 1.8;
+  }
+
+  &__highlight {
+    color: $color-blue-primary;
+    font-weight: 600;
+  }
+
+  &__traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-3;
+  }
+
+  &__cta {
+    display: flex;
+    gap: $spacing-4;
+    flex-wrap: wrap;
+  }
+
+  &__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-4;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__company-card {
+    grid-column: 1 / -1;
+    @include glass;
+    border-radius: $border-radius-lg;
+    padding: $spacing-5;
+    border-color: rgba(79, 142, 247, 0.2);
+    transition: all $transition-base;
+
+    &:hover {
+      border-color: rgba(79, 142, 247, 0.4);
+      box-shadow: $shadow-glow-sm;
+    }
+  }
+}
+
+.trait-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $border-radius-full;
+  background: rgba(79, 142, 247, 0.06);
+  border: 1px solid rgba(79, 142, 247, 0.15);
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-text-secondary;
+  transition: all $transition-base;
+
+  &:hover {
+    background: rgba(79, 142, 247, 0.12);
+    color: $color-text-primary;
+  }
+}
+
+.info-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-3;
+  padding: $spacing-5;
+  @include glass;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: all $transition-base;
+  cursor: default;
+
+  &:hover {
+    border-color: rgba(var(--card-color), 0.3);
+    
+    .info-card__glow {
+      opacity: 0.08;
+    }
+
+    .info-card__icon {
+      border-color: var(--card-color);
+      color: var(--card-color);
+      background: rgba(79, 142, 247, 0.12);
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-md;
+    background: rgba(79, 142, 247, 0.08);
+    border: 1px solid rgba(79, 142, 247, 0.15);
+    color: var(--card-color, #{$color-blue-primary});
+    flex-shrink: 0;
+    transition: all $transition-base;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__value {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-text-primary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__glow {
+    position: absolute;
+    inset: 0;
+    background: var(--card-color, #{$color-blue-primary});
+    opacity: 0;
+    transition: opacity $transition-base;
+    pointer-events: none;
+  }
+}
+
+.company-card {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-bottom: $spacing-3;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $color-green;
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  &__status {
+    font-size: $font-size-xs;
+    color: $color-green;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__name {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-bottom: $spacing-1;
+  }
+
+  &__role {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-3;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+}
+
